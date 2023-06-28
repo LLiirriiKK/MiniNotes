@@ -25,7 +25,14 @@ public class User {
 
     private Role userRole;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private enum Status{
+        ACTIVE, BLOCKED
+    }
+
+    private Status status;
+
+
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Project> projects = new HashSet<>();
 
     public User(){};
@@ -60,5 +67,21 @@ public class User {
 
     public void setUserRole(Role userRole) {
         this.userRole = userRole;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public Set<Project> getProjects() {
+        return projects;
+    }
+
+    public void setProjects(Set<Project> projects) {
+        this.projects = projects;
     }
 }

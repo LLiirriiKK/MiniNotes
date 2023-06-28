@@ -20,7 +20,7 @@ public class Project {
     private Set<Note> notes = new HashSet<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private User user;
+    private User owner;
 
     public Project(){};
 
@@ -40,7 +40,6 @@ public class Project {
         this.projectName = projectName;
     }
 
-
     public Set<Note> getNotes() {
         return notes;
     }
@@ -50,11 +49,11 @@ public class Project {
     }
 
     public User getUser() {
-        return user;
+        return owner;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser(User owner) {
+        this.owner = owner;
     }
 
 }
