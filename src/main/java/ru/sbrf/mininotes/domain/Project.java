@@ -1,5 +1,6 @@
 package ru.sbrf.mininotes.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.HashSet;
@@ -23,6 +24,7 @@ public class Project {
     private User owner;
 
     public Project(){};
+
 
     public int getProjectId() {
         return projectId;
