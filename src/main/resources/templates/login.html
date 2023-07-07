@@ -116,6 +116,9 @@ h1{
 
 <h1>Log In Form</h1>
 <div id="wrapper">
+    <div th:if="${param.error}">
+        Invalid username and password.
+    </div>
 	<form id="signin" th:action="@{/login}" method="post">
 		<input type="text" id="user" name="username" placeholder="username" />
 		<input type="password" id="pass" name="password" placeholder="password" />

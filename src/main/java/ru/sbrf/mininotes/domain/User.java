@@ -1,6 +1,10 @@
 package ru.sbrf.mininotes.domain;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.Length;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -21,9 +25,10 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int userId;
-
+    @NotNull
+    @NotEmpty(message = "Имя пользователя не может быть пустым")
     private String username;
-
+    @Length(min = 5, message = "Пароль слишком короткий")
     private String password;
 
     private UserRole userRole;

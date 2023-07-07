@@ -11,17 +11,15 @@ import java.util.Date;
 public class Note {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+
     private int noteId;
-
+    private String noteTitle;
     private String content;
-
     private Date noteDate;
-
     @ManyToOne(fetch = FetchType.LAZY)
     private Project project;
 
     public Note(){};
-
     public int getNoteId() {
         return noteId;
     }
@@ -29,6 +27,15 @@ public class Note {
     public void setNoteId(int noteId) {
         this.noteId = noteId;
     }
+
+    public String getNoteTitle() {
+        return noteTitle;
+    }
+
+    public void setNoteTitle(String noteTitle) {
+        this.noteTitle = noteTitle;
+    }
+
 
     public String getContent() {
         return content;

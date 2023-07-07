@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+</head>
+<body>
+
+<div class="container">
+    <header class="d-flex justify-content-center py-3">
+        <ul class="nav nav-pills">
+            <li class="nav-item"><a class="nav-link" aria-current="page" href="/">MININOTES</a></li>
+            <li class="nav-item"><a href="/home" class="nav-link" aria-current="page">Home</a></li>
+            <li class="nav-item"><a href="/login" class="nav-link">Sign in</a></li>
+            <li class="nav-item"><a href="/registration" class="nav-link">Create account</a></li>
+            <li class="nav-item"><a href="/home/profile" class="nav-link">Profile</a></li>
+        </ul>
+    </header>
+</div>
+
+
+<div style="display:flex; flex-direction:row; width:70%; margin:auto; justify-content:space-between; vertical-align:middle">
+    <div style="display:inline-block; vertical-align:middle">
+        <div class="d-flex flex-column align-items-stretch flex-shrink-0" style="width: 740px;">
+            <a href="/" class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none">
+                <svg class="bi me-2" width="30" height="24">
+                    <use xlink:href="#bootstrap"/>
+                </svg>
+                    <span th:text="${project.projectName}" class="fs-5 fw-semibold" style="text-align:center; padding:auto"></span>
+            </a>
+
+            <table>
+                <tr>
+                    <td th:if="${#lists.isEmpty(project.notes)}">
+                        <div class="list-group list-group-flush border-bottom scrollarea">
+                            <a href="#" class="list-group-item list-group-item-action active py-3 lh-tight"
+                               aria-current="true">
+                                <div class="d-flex w-100 align-items-center justify-content-between">
+                                    <div class="col-10 mb-1 small">You don't have any notes yeat ;(.</div>
+                                    <!--                            <small>Wed</small>-->
+                                </div>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+                <tr th:each="note: ${project.notes}">
+                    <td>
+                        <div class="list-group list-group-flush border-bottom scrollarea">
+                            <a th:href="@{/home/edit/projects/{projectId}/notes/{noteId}(projectId=${project.projectId}, noteId = ${note.noteId})}"
+                               class="list-group-item list-group-item-action active py-3 lh-tight"
+                               aria-current="true">
+                                <div class="d-flex w-100 align-items-center justify-content-between"
+                                     style="max-width:600px">
+                                    <strong class="mb-1"> <span style="white-space: pre-line;display: inline-block"
+                                                                th:utext="${note.noteTitle}"> </span></strong>
+
+                                    <!--                                <div class="col-10 mb-1 small" style="overflow-wrap: break-word; display: inline-block">-->
+                                    <!--                                    <div th:if="${#strings.isEmpty(note.content)}">-->
+                                    <!--                                        <form th:action="@{/home/edit/projects/{projectId}(projectId=${project.projectId})}"-->
+                                    <!--                                              method="post">-->
+                                    <!--                                            <textarea name="content" placeholder="Content"></textarea>-->
+                                    <!--                                            <input class="btn btn-primary d-inline-flex align-items-center"-->
+                                    <!--                                                   type="submit" value="Add content"/>-->
+                                    <!--                                            <svg class="bi ms-1" width="20" height="20">-->
+                                    <!--                                                <use xlink:href="#arrow-right-short"></use>-->
+                                    <!--                                            </svg>-->
+                                    <!--                                        </form>-->
+                                    <!--                                    </div>-->
+                                    <!--                                    <div th:else class="col-10 mb-1 small" style="overflow-wrap: break-word; display: inline-block">-->
+                                    <!--                                        <small><span th:text="${note.content}"></span></small>-->
+                                    <!--                                    </div>-->
+                                    <!--                                </div>-->
+                                    <!--                                </div>-->
+                                </div>
+                            </a>
+                        </div>
+                    </td>
+                    <td>
+                        <form th:action="@{/home/edit/projects/{projectId}/delete(projectId=${project.projectId})}"
+                              method="post">
+                            <input name="noteId" hidden th:value="${note.noteId}">
+                            <input class="btn btn-primary d-inline-flex align-items-center" type="submit"
+                                   value="Delete note"/>
+                            <svg class="bi ms-1" width="0" height="20">
+                                <use xlink:href="#arrow-right-short"></use>
+                            </svg>
+                        </form>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div style="display: inline-block;">
+
+        <div style="margin-top:115%">
+            <form th:action="@{/home/edit/projects/{projectId}(projectId=${project.projectId})}" method="post">
+                <input name="noteTitle" placeholder="Title">
+                <input class="btn btn-primary d-inline-flex align-items-center" type="submit" value="Add note"/>
+                <svg class="bi ms-1" width="20" height="20">
+                    <use xlink:href="#arrow-right-short"></use>
+                </svg>
+            </form>
+
+        </div>
+    </div>
+    <div style="position:absolute; bottom:0; margin-left:32%"><p><a th:href="@{/home}"
+                                                                    class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover fs-4">Main
+        page</a></p></div>
+</div>
+</div>
+
+
+<br>
+<br>
+<br>
+<br>
+
+
+<!--<a th:href = "@{/home}">На главную</a>-->
+<script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+</body>
+</html>

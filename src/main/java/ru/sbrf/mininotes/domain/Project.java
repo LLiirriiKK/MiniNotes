@@ -25,6 +25,16 @@ public class Project {
 
     public Project(){};
 
+    public void addNote(Note note){
+        notes.add(note);
+        note.setProject(this);
+    }
+
+    public void delNote(Note note){
+        notes.remove(note);
+        note.setProject(null);
+    }
+
 
     public int getProjectId() {
         return projectId;

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+</head>
+<style>
+
+</style>
+<body>
+
+<div class="container">
+    <header class="d-flex justify-content-center py-3">
+        <ul class="nav nav-pills">
+            <li class="nav-item"><a class="nav-link" aria-current="page" href="/">MININOTES</a></li>
+            <li class="nav-item"><a href="/home" class="nav-link" aria-current="page">Home</a></li>
+            <li class="nav-item"><a href="/login" class="nav-link">Sign in</a></li>
+            <li class="nav-item"><a href="/registration" class="nav-link">Create account</a></li>
+            <li class="nav-item"><a href="/home/profile" class="nav-link">Profile</a></li>
+        </ul>
+    </header>
+</div>
+
+<div class="px-4 py-5 my-5 text-center">
+    <h1 class="display-5 fw-bold">MININOTES</h1>
+    <div class="col-lg-6 mx-auto">
+        <p class="lead mb-4">Содавайте заметки вместе с самым популярным сервисом MININOTES. Удобный интерфейс, красивый дизайн и невероятный функционал! Мы - лучшие в своем деле.</p>
+        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+            <button type="button" class="btn btn-outline-secondary btn-lg px-4"><a style="text-decoration:none" href = "/registration"> Create account </a></button>
+            <button type="button" class="btn btn-outline-secondary btn-lg px-4"><a style="text-decoration:none" href = "/login"> Log in </a></button>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -113,14 +113,15 @@ h1{
 }
 </style>
 <body>
-
 <h1>Registration Form</h1>
 <div id="wrapper">
 
-    <form id="signin" th:action="@{/registration}" method="post">
+    <form id="signin" th:action="@{/registration}" method="post" th:object="${user}">
         <input type="text" id="user" name="username" placeholder="username" />
-        <input type="password" id="pass" name="password" placeholder="password" />
+        <input type="password" id="pass" name="password" placeholder="password" th:field="*{password}"/>
         <input type="password" id="pass" name="password1" placeholder="Repeat your password" />
+        <div><span th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span></div>
+        <div><span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span></div>
         <button type="submit">&#xf0da;</button>
     </form>
 </div>
